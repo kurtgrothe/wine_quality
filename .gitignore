@@ -1,4 +1,12 @@
-# Jupyter Notebook
+# docker
+.dockerignore
+
+#Heroku
+.slugignore
+
+# Jupyter
+.jupyter/
+jupyter_notebook_config.py
 .ipynb_checkpoints/
 
 # Python virtual environment
@@ -45,9 +53,3 @@ Desktop.ini
 *.res
 *.idb
 *.class
-
-# docker
-.dockerignore
-
-#Heroku
-.slugignore
