@@ -12,7 +12,8 @@ ADD . /app
 RUN pip install -r requirements.txt
 
 # Expose port 
-EXPOSE 5000
+#EXPOSE 5000
 
 # Run the application:
-CMD ["python", "app.py"]
+# CMD ["python", "app.py"]
+CMD ["python", "app.py", "--port", "$PORT"]
