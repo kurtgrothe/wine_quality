@@ -26,9 +26,6 @@ Icon?
 ehthumbs.db
 Thumbs.db
 
-Here is a basic .gitignore template for a Windows development environment:
-
-Copy code
 # Windows specific files
 Thumbs.db
 Desktop.ini
@@ -51,3 +48,6 @@ Desktop.ini
 
 # docker
 .dockerignore
+
+#Heroku
+.slugignore
