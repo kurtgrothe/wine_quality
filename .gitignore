@@ -48,3 +48,6 @@ Desktop.ini
 *.res
 *.idb
 *.class
+
+# docker
+.dockerignore
