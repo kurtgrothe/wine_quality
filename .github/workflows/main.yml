@@ -27,6 +27,5 @@ jobs:
       run: docker push kurt91932/wine_classification
 
     - name: Deploy to Heroku
-      run: |
-        echo ${{secrets.HEROKU_API_KEY}} | docker login --username=_ --password-stdin registry.heroku.com
+      run: echo ${{secrets.HEROKU_API_KEY}} | --password-stdin registry.heroku.com
         heroku container:push web --app wine-classify
