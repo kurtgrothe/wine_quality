@@ -1,34 +1,28 @@
-name: Python package
+name: Deploy to Heroku
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  build:
-
+  deploy:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.9"]
 
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v3
-        with:
-          python-version: ${{ matrix.python-version }}
-      - name: Install dependencies
-        run:
-          python -m pip install --upgrade pip
-          pip install --upgrade wheel
-          pip install --upgrade setuptools
-          pip install pyqt5
-          pip install flake8
-          pip install -r requirements.txt
-      - name: run_program
-        run: python app.py
-      - name: deploy to Heroku
-        uses: akhileshns/heroku-deploy@v3.12.12
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "wine_classification" # From Heroku
-          heroku_email: "kurt.grothe@gmail.com"
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Build Docker Image
+      run: |
+        docker build -t kurt91932/wine_classification .
+
+    - name: Push Docker Image
+      run: |
+        echo ${{secrets.DOCKER_PASSWORD}} | docker login -u ${{secrets.DOCKER_USERNAME}} --password-stdin
+        docker push kurt91932/wine_classification
+
+    - name: Deploy to Heroku
+      run: |
+        echo ${{secrets.HEROKU_API_KEY}} | docker login --username=_ --password-stdin registry.heroku.com
+        heroku container:push web --app wine_classification
