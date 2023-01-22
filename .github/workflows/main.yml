@@ -14,17 +14,13 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Build Docker Image
-      run: |
-        docker build -t kurt91932/wine_classification .
+      run: docker build -t kurt91932/wine_classification .
     
     - name: Login to Docker
-      run: |
-        echo ${{secrets.DOCKER_PASSWORD}} | docker login -u={{secrets.DOCKER_USERNAME}} --password-stdin  
-
+      run: docker login --username={{secrets.DOCKER_USERNAME}} --password={{secrets.DOCKER_PASSWORD}}  
+    
     - name: Push Docker Image
-      run: |
-        echo ${{secrets.DOCKER_PASSWORD}} | docker login -u ${{secrets.DOCKER_USERNAME}} --password-stdin
-        docker push kurt91932/wine_classification
+      run: docker push kurt91932/wine_classification
 
     - name: Deploy to Heroku
       run: |
