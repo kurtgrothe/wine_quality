@@ -29,4 +29,4 @@ jobs:
     - name: Deploy to Heroku
       run: |
         echo ${{secrets.HEROKU_API_KEY}} | docker login --username=_ --password-stdin registry.heroku.com
-        heroku container:push web --app wine_classification
+        heroku container:push web --app wine-classify
