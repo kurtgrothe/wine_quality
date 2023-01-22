@@ -18,7 +18,7 @@ jobs:
       run: docker build -t kurt91932/wine_classification .
     
     - name: Login to Docker
-      run: docker login --username={{secrets.DOCKER_USERNAME}} --password={{secrets.DOCKER_PASSWORD}}  
+      run: echo ${{secrets.DOCKER_PASSWORD}} | docker login --username={{secrets.DOCKER_USERNAME}} --password-stdin
     
     - name: Push Docker Image
       run: docker push kurt91932/wine_classification
