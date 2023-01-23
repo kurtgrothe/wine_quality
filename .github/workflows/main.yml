@@ -26,6 +26,9 @@ jobs:
     - name: Push Docker Image
       run: docker push kurt91932/wine_classification
 
+      env:
+        HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
+      run: heroku container:login
+
     - name: Deploy to Heroku
-      run: echo ${{secrets.HEROKU_API_KEY}} | 
-        heroku container:push web --app wine-classify
+      run: heroku container:push web --app wine-classify
