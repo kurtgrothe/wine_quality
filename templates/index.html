@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wine Quality</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Wine Quality Prediction, docker deployed</h1>
+    </header>
+    <form action="{{ url_for('predict')}}" method="POST">
+        <legend>Please enter the following measurements:</legend>
+
+        <label for="alcohol">Alcohol:</label>
+        <input type="text" name="alcohol" id="alcohol" required>
+
+        <label for="sulphates">Sulphates:</label>
+        <input type="text" name="sulphates" id="sulphates" required>
+
+        <label for="citric_acid">Citric Acid:</label>
+        <input type="text" name="citric_acid" id="citric_acid" required>
+
+        <label for="volatile_acidity">Volatile Acidity:</label>
+        <input type="text" name="volatile_acidity" id="volatile_acidity" required>
+        <br>
+        <input type="submit" value="Submit">
+   </form>
+   <p>{{ predict }}</p>
+    <footer>
+        <p>Deployed Docker Image via GitHub Actions</p>
+        <p>Kurt Grothe, 2023</p>
+    </footer>
+</body>
+</html>
+
