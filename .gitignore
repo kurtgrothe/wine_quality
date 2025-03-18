@@ -54,3 +54,13 @@ Desktop.ini
 *.res
 *.idb
 *.class
+
+# IDEs and editors
+.idea/
+.vscode/
+
+###########################
+# Helm
+###########################
+# Ignore packaged chart archives
+*.tgz
